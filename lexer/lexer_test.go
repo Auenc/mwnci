@@ -15,6 +15,17 @@ func TestNextToken(t *testing.T) {
 	};
 
 	gosod result = add(five, ten);
+	!-/*5;
+	5 < 10 > 5;
+
+	os (5 < 10) {
+		adfer gwir;
+	} arall {
+		adfer ffug;
+	}
+
+	10 == 10;
+	10 != 9;
 	`
 	tests := []struct {
 		expectedType    token.TokenType
@@ -56,6 +67,43 @@ func TestNextToken(t *testing.T) {
 		{token.COMMA, ","},
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
+		{token.SEMICOLON, ";"},
+		{token.BANG, "!"},
+		{token.MINUS, "-"},
+		{token.SLASH, "/"},
+		{token.ASTERISK, "*"},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
+		{token.INT, "5"},
+		{token.LT, "<"},
+		{token.INT, "10"},
+		{token.GT, ">"},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
+		{token.IF, "os"},
+		{token.LPAREN, "("},
+		{token.INT, "5"},
+		{token.LT, "<"},
+		{token.INT, "10"},
+		{token.RPAREN, ")"},
+		{token.LBRACE, "{"},
+		{token.RETURN, "adfer"},
+		{token.TRUE, "gwir"},
+		{token.SEMICOLON, ";"},
+		{token.RBRACE, "}"},
+		{token.ELSE, "arall"},
+		{token.LBRACE, "{"},
+		{token.RETURN, "adfer"},
+		{token.FALSE, "ffug"},
+		{token.SEMICOLON, ";"},
+		{token.RBRACE, "}"},
+		{token.INT, "10"},
+		{token.EQ, "=="},
+		{token.INT, "10"},
+		{token.SEMICOLON, ";"},
+		{token.INT, "10"},
+		{token.NOT_EQ, "!="},
+		{token.INT, "9"},
 		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
